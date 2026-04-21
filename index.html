@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Asistencia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="./assets/index-CJQ0FY03.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DjcpJrzy.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Asistencia Web</h1>
+      </div>
+      <nav>
+        <button class="nav-btn active" data-view="dashboard">
+          <i data-lucide="calendar-days"></i> Mes
+        </button>
+        <button class="nav-btn" data-view="scanner">
+          <i data-lucide="scan-line"></i> Escáner
+        </button>
+        <button class="nav-btn" data-view="students">
+          <i data-lucide="users"></i> Alumnos
+        </button>
+        <button class="nav-btn" data-view="settings">
+          <i data-lucide="settings"></i> Configuración
+        </button>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <!-- DASHBOARD VIEW -->
+      <section id="view-dashboard" class="view active">
+        <header class="view-header">
+          <h2>Informe de Asistencia Mensual</h2>
+          <div class="controls">
+            <button id="prev-month" class="btn btn-icon"><i data-lucide="chevron-left"></i></button>
+            <span id="current-month-display" class="month-display"></span>
+            <button id="next-month" class="btn btn-icon"><i data-lucide="chevron-right"></i></button>
+          </div>
+        </header>
+        
+        <div class="table-container">
+          <table id="attendance-table" class="attendance-table">
+            <thead>
+              <tr id="table-header-days">
+                <!-- Days will be generated via JS -->
+              </tr>
+            </thead>
+            <tbody id="table-body">
+               <!-- Students will be generated via JS -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="legend">
+          <span class="legend-item"><span class="badge status-present">.</span> Asistió</span>
+          <span class="legend-item"><span class="badge status-late">T</span> Tardanza</span>
+          <span class="legend-item"><span class="badge status-absent">F</span> Faltó</span>
+          <span class="legend-item"><span class="badge status-justified">J</span> Falta Justificada</span>
+          <span class="legend-item"><span class="badge status-late-justified">U</span> Tardanza Justificada</span>
+        </div>
+      </section>
+
+      <!-- SCANNER VIEW -->
+      <section id="view-scanner" class="view">
+        <header class="view-header">
+          <h2>Escáner de Ingreso</h2>
+        </header>
+        <div class="scanner-container">
+          <div id="qr-reader"></div>
+          <div class="scan-result" id="scan-result">
+            <p>Esperando escaneo...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- STUDENTS VIEW -->
+      <section id="view-students" class="view">
+        <header class="view-header">
+          <h2>Gestión de Alumnos</h2>
+          <div class="controls">
+            <button class="btn btn-primary" id="btn-add-student">
+              <i data-lucide="plus"></i> Nuevo Alumno
+            </button>
+            <button class="btn btn-secondary" id="btn-print-qrs">
+              <i data-lucide="printer"></i> Imprimir QRs
+            </button>
+          </div>
+        </header>
+        
+        <div class="students-list" id="students-list">
+          <!-- Students will be injected here -->
+        </div>
+      </section>
+
+      <!-- SETTINGS VIEW -->
+      <section id="view-settings" class="view">
+        <header class="view-header">
+          <h2>Configuración de Horarios</h2>
+        </header>
+        <div class="card settings-card">
+          <form id="settings-form">
+            <div class="form-group">
+              <label for="max-on-time">Hora Máxima de Ingreso (A tiempo)</label>
+              <input type="time" id="max-on-time" required>
+              <small>Llegadas antes o a esta hora se marcan como "Asistió".</small>
+            </div>
+            <div class="form-group">
+              <label for="max-late-time">Hora Límite de Tardanza (Falta a partir de aquí)</label>
+              <input type="time" id="max-late-time" required>
+              <small>Llegadas después de la hora máxima pero antes de esta se marcan "Tardanza". Si no llegan hasta esta hora, es "Falta".</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Configuración</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Edit Status Modal -->
+  <div id="status-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3>Editar Asistencia</h3>
+      <p id="modal-student-name" class="modal-subtitle"></p>
+      <p id="modal-date" class="modal-subtitle"></p>
+      
+      <div class="status-options">
+        <button class="btn-status" data-status="."><span class="badge status-present">.</span> Asistió</button>
+        <button class="btn-status" data-status="T"><span class="badge status-late">T</span> Tardanza</button>
+        <button class="btn-status" data-status="F"><span class="badge status-absent">F</span> Faltó</button>
+        <button class="btn-status" data-status="J"><span class="badge status-justified">J</span> Falta Justificada</button>
+        <button class="btn-status" data-status="U"><span class="badge status-late-justified">U</span> Tardanza Justificada</button>
+        <button class="btn-status" data-status=""><span class="badge"></span> Borrar</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
