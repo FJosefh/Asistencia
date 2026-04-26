@@ -1,0 +1,129 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "ALCALA ESTRADA, DOMENICA CAMILA"
+    },
+    {
+      "id": "2",
+      "name": "ANTICONA GARCIA, CATHERINE ZOE RAFAELA"
+    },
+    {
+      "id": "3",
+      "name": "CAJAHUANCA GOYAS, LUIS FERNANDO"
+    },
+    {
+      "id": "4",
+      "name": "CALONGE MARTINEZ, MARIA ROSA"
+    },
+    {
+      "id": "5",
+      "name": "CASTAÑEDA MARTINEZ, MIA NICOLE"
+    },
+    {
+      "id": "6",
+      "name": "CERVETTO ESCOBEDO, STEFANO EMANUEL"
+    },
+    {
+      "id": "7",
+      "name": "CHORRES GARCIA, JADIEL ADHEMIR"
+    },
+    {
+      "id": "8",
+      "name": "CRUZ RAMOS, JOHAN DE MANUEL"
+    },
+    {
+      "id": "9",
+      "name": "ESCOBAR PALOMINO, JHON ANDERSON"
+    },
+    {
+      "id": "10",
+      "name": "ESPINOZA RUIZ, JADE ANETH"
+    },
+    {
+      "id": "11",
+      "name": "GAMARRA LAPA, ARMANDO STEPHANO"
+    },
+    {
+      "id": "12",
+      "name": "HERRERA HUAMANI, BENJAMIN GAEL"
+    },
+    {
+      "id": "13",
+      "name": "HERRERA HUAMANI, CRISTINA GENESIS"
+    },
+    {
+      "id": "14",
+      "name": "LEDESMA PAYANO, YUMI KAORI"
+    },
+    {
+      "id": "15",
+      "name": "LIZANA MORALES, IVANNA YAMILLET"
+    },
+    {
+      "id": "16",
+      "name": "LIZANA MORALES, VALENTINA TRINIDAD"
+    },
+    {
+      "id": "17",
+      "name": "LLUEN OLAZABAL, RENZO VALENTINO"
+    },
+    {
+      "id": "18",
+      "name": "MACEDO DIAZ, LUHANA DALESKA"
+    },
+    {
+      "id": "19",
+      "name": "MERINO BULLON, MANUEL AARON"
+    },
+    {
+      "id": "20",
+      "name": "MORALES CASIO, YIDDA LUCIANA"
+    },
+    {
+      "id": "21",
+      "name": "ORTEGA GONZALES, CEVASTIAN"
+    },
+    {
+      "id": "22",
+      "name": "PENADILLO RUIZ, LIONARDO PAOLO"
+    },
+    {
+      "id": "23",
+      "name": "POMACOSI MARTINEZ, LUCIANA VALENTINA"
+    },
+    {
+      "id": "24",
+      "name": "RISCO CAMA, CARLOS JOSÉ"
+    },
+    {
+      "id": "25",
+      "name": "RODRIGUEZ ARELLAN, DHYLAND NEVILLE"
+    },
+    {
+      "id": "26",
+      "name": "SALAS VILLAREAL, SEBASTIÁN ENRIQUE"
+    },
+    {
+      "id": "27",
+      "name": "SALAZAR QUINTANA, SEFORA AYELÉN"
+    },
+    {
+      "id": "28",
+      "name": "TORRE BARZOLA, KENLY NICOL"
+    },
+    {
+      "id": "29",
+      "name": "TUNQUE VALENCIA, ABIGAIL ARACELLY"
+    },
+    {
+      "id": "30",
+      "name": "VALENCIA MANZANARES, LUZMARIA ESTHER"
+    }
+  ],
+  "attendance": {},
+  "settings": {
+    "maxOnTime": "08:00",
+    "maxLateTime": "08:30"
+  }
+}
