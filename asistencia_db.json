@@ -121,7 +121,13 @@
       "name": "VALENCIA MANZANARES, LUZMARIA ESTHER"
     }
   ],
-  "attendance": {},
+  "attendance": {
+    "2026-04": {
+      "2026-04-01": {
+        "1": "."
+      }
+    }
+  },
   "settings": {
     "maxOnTime": "08:00",
     "maxLateTime": "08:30"
