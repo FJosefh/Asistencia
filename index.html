@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sistema de Asistencia</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/index-CJQ0FY03.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DjcpJrzy.css">
+  <script type="module" crossorigin src="./assets/index-COKp_FFU.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CTFkBSWU.css">
 </head>
 <body>
   <div class="app-container">
@@ -37,6 +37,8 @@
         <header class="view-header">
           <h2>Informe de Asistencia Mensual</h2>
           <div class="controls">
+            <button id="btn-export-excel" class="btn btn-secondary"><i data-lucide="file-spreadsheet"></i> Excel</button>
+            <button id="btn-export-pdf" class="btn btn-secondary"><i data-lucide="file-text"></i> PDF</button>
             <button id="prev-month" class="btn btn-icon"><i data-lucide="chevron-left"></i></button>
             <span id="current-month-display" class="month-display"></span>
             <button id="next-month" class="btn btn-icon"><i data-lucide="chevron-right"></i></button>
@@ -100,9 +102,10 @@
       <!-- SETTINGS VIEW -->
       <section id="view-settings" class="view">
         <header class="view-header">
-          <h2>Configuración de Horarios</h2>
+          <h2>Configuración</h2>
         </header>
-        <div class="card settings-card">
+        <div class="card settings-card" style="margin-bottom: 24px;">
+          <h3 style="margin-bottom: 16px;">Configuración de Horarios</h3>
           <form id="settings-form">
             <div class="form-group">
               <label for="max-on-time">Hora Máxima de Ingreso (A tiempo)</label>
@@ -114,7 +117,27 @@
               <input type="time" id="max-late-time" required>
               <small>Llegadas después de la hora máxima pero antes de esta se marcan "Tardanza". Si no llegan hasta esta hora, es "Falta".</small>
             </div>
-            <button type="submit" class="btn btn-primary">Guardar Configuración</button>
+            <button type="submit" class="btn btn-primary">Guardar Horarios</button>
+          </form>
+        </div>
+        
+        <div class="card settings-card">
+          <h3 style="margin-bottom: 16px;">Sincronización en la Nube (GitHub)</h3>
+          <form id="github-form">
+            <div class="form-group">
+              <label for="gh-token">Personal Access Token (PAT)</label>
+              <input type="password" id="gh-token" placeholder="ghp_...">
+              <small>Requiere permisos de 'repo'. Déjalo vacío para usar almacenamiento local solamente.</small>
+            </div>
+            <div class="form-group">
+              <label for="gh-owner">Usuario de GitHub</label>
+              <input type="text" id="gh-owner" placeholder="Tu usuario">
+            </div>
+            <div class="form-group">
+              <label for="gh-repo">Nombre del Repositorio</label>
+              <input type="text" id="gh-repo" placeholder="Ej. asistencia-web">
+            </div>
+            <button type="submit" class="btn btn-primary"><i data-lucide="cloud-upload"></i> Guardar Sincronización</button>
           </form>
         </div>
       </section>
