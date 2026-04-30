@@ -6,72 +6,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sistema de Asistencia</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/index-DdnrPYoQ.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CTFkBSWU.css">
+  <script type="module" crossorigin src="./assets/index-BvJ5JqvF.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CUPMOigY.css">
 </head>
 <body>
   <div class="app-container">
     <aside class="sidebar">
       <div class="brand">
         <h1>Asistencia Web</h1>
+        <div id="active-room-badge" class="room-badge hidden"></div>
       </div>
       <nav>
-        <button class="nav-btn active" data-view="dashboard">
+        <button class="nav-btn" data-view="room-selection">
+          <i data-lucide="layout-grid"></i> Salones
+        </button>
+        <button class="nav-btn active" data-view="dashboard" id="nav-dashboard">
           <i data-lucide="calendar-days"></i> Mes
         </button>
-        <button class="nav-btn" data-view="scanner">
+        <button class="nav-btn" data-view="scanner" id="nav-scanner">
           <i data-lucide="scan-line"></i> Escáner
         </button>
-        <button class="nav-btn" data-view="students">
+        <button class="nav-btn" data-view="students" id="nav-students">
           <i data-lucide="users"></i> Alumnos
         </button>
-        <button class="nav-btn" data-view="settings">
-          <i data-lucide="settings"></i> Configuración
+        <button class="nav-btn" data-view="room-admin">
+          <i data-lucide="settings-2"></i> Config. Master
+        </button>
+        <button class="nav-btn" data-view="settings" style="margin-top: auto;">
+          <i data-lucide="settings"></i> GitHub
         </button>
       </nav>
     </aside>
 
     <main class="content">
-      <!-- DASHBOARD VIEW -->
-      <section id="view-dashboard" class="view active">
+      <!-- ROOM SELECTION VIEW -->
+      <section id="view-room-selection" class="view active">
         <header class="view-header">
-          <h2>Informe de Asistencia Mensual</h2>
+          <h2>Seleccionar Salón</h2>
+        </header>
+        <div id="rooms-grid" class="rooms-grid">
+          <!-- Rooms will be injected here -->
+        </div>
+      </section>
+
+      <!-- ROOM ADMIN VIEW -->
+      <section id="view-room-admin" class="view">
+        <header class="view-header">
+          <h2>Configuración de Salones</h2>
+        </header>
+        <div class="card settings-card">
+          <h3 style="margin-bottom: 16px;">Salones Disponibles</h3>
+          <p style="margin-bottom: 16px; opacity: 0.8;">Marca los grados y secciones que deseas habilitar en el selector.</p>
+          <div id="master-config-container">
+            <!-- Config checkboxes will be injected here -->
+          </div>
+          <button id="btn-save-master" class="btn btn-primary" style="margin-top: 20px;">Guardar Configuración</button>
+        </div>
+      </section>
+
+      <!-- DASHBOARD VIEW -->
+      <section id="view-dashboard" class="view">
+        <header class="view-header">
+          <div style="display:flex; flex-direction:column;">
+             <h2 id="dashboard-title">Informe Mensual</h2>
+             <span id="room-subtitle" style="font-size: 0.9rem; opacity: 0.7;">Selecciona un salón para ver datos</span>
+          </div>
           <div class="controls">
             <button id="btn-sync" class="btn btn-primary" style="margin-right: 8px;"><i data-lucide="refresh-cw"></i> Sincronizar</button>
+            <button id="btn-close-day" class="btn btn-warning" style="margin-right: 8px; background-color: var(--status-absent);"><i data-lucide="power"></i> Cerrar Día</button>
             <button id="btn-export-excel" class="btn btn-secondary"><i data-lucide="file-spreadsheet"></i> Excel</button>
-            <button id="btn-export-pdf" class="btn btn-secondary"><i data-lucide="file-text"></i> PDF</button>
             <button id="prev-month" class="btn btn-icon"><i data-lucide="chevron-left"></i></button>
             <span id="current-month-display" class="month-display"></span>
             <button id="next-month" class="btn btn-icon"><i data-lucide="chevron-right"></i></button>
           </div>
         </header>
         
-        <div class="table-container">
-          <table id="attendance-table" class="attendance-table">
-            <thead>
-              <tr id="table-header-days">
-                <!-- Days will be generated via JS -->
-              </tr>
-            </thead>
-            <tbody id="table-body">
-               <!-- Students will be generated via JS -->
-            </tbody>
-          </table>
+        <div id="dashboard-empty" class="empty-state">
+           <i data-lucide="layout-grid" size="48"></i>
+           <p>Por favor, selecciona un salón para ver el registro de asistencia.</p>
+           <button class="btn btn-primary" onclick="document.querySelector('[data-view=room-selection]').click()">Ir a Salones</button>
         </div>
-        
-        <div class="legend">
-          <span class="legend-item"><span class="badge status-present">.</span> Asistió</span>
-          <span class="legend-item"><span class="badge status-late">T</span> Tardanza</span>
-          <span class="legend-item"><span class="badge status-absent">F</span> Faltó</span>
-          <span class="legend-item"><span class="badge status-justified">J</span> Falta Justificada</span>
-          <span class="legend-item"><span class="badge status-late-justified">U</span> Tardanza Justificada</span>
+
+        <div id="dashboard-content" class="table-container hidden">
+          <table id="attendance-table" class="attendance-table">
+            <thead><tr id="table-header-days"></tr></thead>
+            <tbody id="table-body"></tbody>
+          </table>
+          <div class="legend">
+            <span class="legend-item"><span class="badge status-present">.</span> Asistió</span>
+            <span class="legend-item"><span class="badge status-late">T</span> Tardanza</span>
+            <span class="legend-item"><span class="badge status-absent">F</span> Faltó</span>
+          </div>
         </div>
       </section>
 
       <!-- SCANNER VIEW -->
       <section id="view-scanner" class="view">
         <header class="view-header">
-          <h2>Escáner de Ingreso</h2>
+          <div style="display:flex; flex-direction:column;">
+            <h2>Escáner de Ingreso</h2>
+            <div id="scanner-mode-badge" style="font-size: 0.8rem; background: var(--primary-light); padding: 2px 8px; border-radius: 4px; width: fit-content; margin-top: 4px;">Modo: General</div>
+          </div>
+          <div class="controls">
+             <button id="btn-toggle-scanner-mode" class="btn btn-secondary">Cambiar a Salón Actual</button>
+          </div>
         </header>
         <div class="scanner-container">
           <div id="qr-reader"></div>
@@ -84,39 +122,47 @@
       <!-- STUDENTS VIEW -->
       <section id="view-students" class="view">
         <header class="view-header">
-          <h2>Gestión de Alumnos</h2>
+          <div style="display:flex; flex-direction:column;">
+            <h2>Gestión de Alumnos</h2>
+            <span id="students-room-subtitle" style="font-size: 0.9rem; opacity: 0.7;">Selecciona un salón primero</span>
+          </div>
           <div class="controls">
+            <button class="btn btn-secondary" id="btn-import-excel">
+              <i data-lucide="upload"></i> Importar Excel
+            </button>
+            <input type="file" id="excel-input" accept=".xlsx, .xls, .csv" style="display:none;">
             <button class="btn btn-primary" id="btn-add-student">
-              <i data-lucide="plus"></i> Nuevo Alumno
+              <i data-lucide="plus"></i> Nuevo
             </button>
             <button class="btn btn-secondary" id="btn-print-qrs">
-              <i data-lucide="printer"></i> Imprimir QRs
+              <i data-lucide="printer"></i> QRs
             </button>
           </div>
         </header>
         
-        <div class="students-list" id="students-list">
-          <!-- Students will be injected here -->
+        <div id="students-empty" class="empty-state">
+           <p>Selecciona un salón para gestionar sus alumnos.</p>
         </div>
+        <div class="students-list hidden" id="students-list"></div>
       </section>
 
       <!-- SETTINGS VIEW -->
       <section id="view-settings" class="view">
         <header class="view-header">
-          <h2>Configuración</h2>
+          <h2>Configuración de Sincronización</h2>
         </header>
         <div class="card settings-card" style="margin-bottom: 24px;">
           <h3 style="margin-bottom: 16px;">Configuración de Horarios</h3>
           <form id="settings-form">
             <div class="form-group">
-              <label for="max-on-time">Hora Máxima de Ingreso (A tiempo)</label>
+              <label for="max-on-time">Hora Límite de Ingreso (A tiempo)</label>
               <input type="time" id="max-on-time" required>
-              <small>Llegadas antes o a esta hora se marcan como "Asistió".</small>
+              <small>Llegadas <b>antes</b> de esta hora se marcan como "Asistió". (Ej. si pones 07:30, hasta 07:29 es Asistió).</small>
             </div>
             <div class="form-group">
               <label for="max-late-time">Hora Límite de Tardanza (Falta a partir de aquí)</label>
               <input type="time" id="max-late-time" required>
-              <small>Llegadas después de la hora máxima pero antes de esta se marcan "Tardanza". Si no llegan hasta esta hora, es "Falta".</small>
+              <small>Llegadas a partir de la hora de ingreso pero <b>antes</b> de esta se marcan "Tardanza". A partir de esta hora es "Falta".</small>
             </div>
             <button type="submit" class="btn btn-primary">Guardar Horarios</button>
           </form>
