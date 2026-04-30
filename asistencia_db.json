@@ -689,7 +689,7 @@
     }
   },
   "settings": {
-    "maxOnTime": "07:00",
-    "maxLateTime": "07:30"
+    "maxOnTime": "07:30",
+    "maxLateTime": "21:30"
   }
 }
